@@ -2,7 +2,7 @@ import { Tabs } from 'expo-router';
 
 const TabLayout: React.FC = () => {
   return (
-    <Tabs>
+    <Tabs screenOptions={{ headerShown: false }}>
       <Tabs.Screen
         name="index"
         options={{
