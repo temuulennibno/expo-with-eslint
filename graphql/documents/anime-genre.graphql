@@ -1,0 +1,15 @@
+query AnimeGenres {
+  animeGenres {
+    id
+    title
+    createdAt
+  }
+}
+
+query AnimeGenre($id: ID!) {
+  animeGenre(id: $id) {
+    id
+    title
+    createdAt
+  }
+}

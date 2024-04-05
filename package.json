@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
+    "prestart": "bun run codegen",
+    "codegen": "bunx graphql-codegen --config ./graphql/codegen.ts",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -38,6 +40,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.0",
     "@types/react": "~18.2.45",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",

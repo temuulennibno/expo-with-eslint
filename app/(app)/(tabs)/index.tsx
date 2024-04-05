@@ -1,9 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native';
 
+import { useAnimeGenresQuery } from '@/graphql/generated';
+
 export default function TabOneScreen(): React.ReactNode {
+  const { data, loading, error } = useAnimeGenresQuery();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One!</Text>
+      {loading && <Text>Loading...</Text>}
+      {error && <Text>Error: {error.message}</Text>}
+      {data?.animeGenres.map((genre) => <Text key={genre.id}>{genre.title}</Text>)}
     </View>
   );
 }
