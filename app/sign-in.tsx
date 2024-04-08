@@ -1,4 +1,4 @@
-import { useSignIn } from '@clerk/clerk-expo';
+import { useAuth, useSignIn } from '@clerk/clerk-expo';
 import { Link, useRouter } from 'expo-router';
 import React from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -8,7 +8,11 @@ export default function SignInScreen() {
   const router = useRouter();
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const { isSignedIn } = useAuth();
 
+  if (isSignedIn ?? false) {
+    router.push('/(app)/(tabs)');
+  }
   const onSignInPress = async () => {
     if (!isLoaded) {
       return;

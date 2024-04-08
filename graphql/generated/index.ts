@@ -1,4 +1,3 @@
-/* eslint-disable  */
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
@@ -6,21 +5,17 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = {
-  [_ in K]?: never;
-};
-export type Incremental<T> =
-  | T
-  | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string };
-  String: { input: string; output: string };
-  Boolean: { input: boolean; output: boolean };
-  Int: { input: number; output: number };
-  Float: { input: number; output: number };
-  Date: { input: any; output: any };
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  Date: { input: any; output: any; }
 };
 
 export type AnimeGenre = {
@@ -43,17 +38,21 @@ export type Mutation = {
   updateAnimeGenre: AnimeGenre;
 };
 
+
 export type MutationCreateAnimeGenreArgs = {
   title: Scalars['String']['input'];
 };
+
 
 export type MutationDeleteAnimeGenreArgs = {
   id: Scalars['ID']['input'];
 };
 
+
 export type MutationRegisterUserArgs = {
   input: UserRegisterInput;
 };
+
 
 export type MutationUpdateAnimeGenreArgs = {
   input: AnimeGenreUpdateInput;
@@ -67,9 +66,11 @@ export type Query = {
   getUsers: Array<Maybe<User>>;
 };
 
+
 export type QueryAnimeGenreArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type QueryGetUserArgs = {
   id: Scalars['ID']['input'];
@@ -88,31 +89,28 @@ export type UserRegisterInput = {
   password: Scalars['String']['input'];
 };
 
-export type AnimeGenresQueryVariables = Exact<{ [key: string]: never }>;
+export type AnimeGenresQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type AnimeGenresQuery = {
-  __typename?: 'Query';
-  animeGenres: Array<{ __typename?: 'AnimeGenre'; id: string; title: string; createdAt: any }>;
-};
+
+export type AnimeGenresQuery = { __typename?: 'Query', animeGenres: Array<{ __typename?: 'AnimeGenre', id: string, title: string, createdAt: any }> };
 
 export type AnimeGenreQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
-export type AnimeGenreQuery = {
-  __typename?: 'Query';
-  animeGenre?: { __typename?: 'AnimeGenre'; id: string; title: string; createdAt: any } | null;
-};
+
+export type AnimeGenreQuery = { __typename?: 'Query', animeGenre?: { __typename?: 'AnimeGenre', id: string, title: string, createdAt: any } | null };
+
 
 export const AnimeGenresDocument = gql`
-  query AnimeGenres {
-    animeGenres {
-      id
-      title
-      createdAt
-    }
+    query AnimeGenres {
+  animeGenres {
+    id
+    title
+    createdAt
   }
-`;
+}
+    `;
 
 /**
  * __useAnimeGenresQuery__
@@ -129,46 +127,31 @@ export const AnimeGenresDocument = gql`
  *   },
  * });
  */
-export function useAnimeGenresQuery(
-  baseOptions?: Apollo.QueryHookOptions<AnimeGenresQuery, AnimeGenresQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<AnimeGenresQuery, AnimeGenresQueryVariables>(AnimeGenresDocument, options);
-}
-export function useAnimeGenresLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<AnimeGenresQuery, AnimeGenresQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<AnimeGenresQuery, AnimeGenresQueryVariables>(
-    AnimeGenresDocument,
-    options,
-  );
-}
-export function useAnimeGenresSuspenseQuery(
-  baseOptions?: Apollo.SuspenseQueryHookOptions<AnimeGenresQuery, AnimeGenresQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<AnimeGenresQuery, AnimeGenresQueryVariables>(
-    AnimeGenresDocument,
-    options,
-  );
-}
+export function useAnimeGenresQuery(baseOptions?: Apollo.QueryHookOptions<AnimeGenresQuery, AnimeGenresQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AnimeGenresQuery, AnimeGenresQueryVariables>(AnimeGenresDocument, options);
+      }
+export function useAnimeGenresLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AnimeGenresQuery, AnimeGenresQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AnimeGenresQuery, AnimeGenresQueryVariables>(AnimeGenresDocument, options);
+        }
+export function useAnimeGenresSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<AnimeGenresQuery, AnimeGenresQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AnimeGenresQuery, AnimeGenresQueryVariables>(AnimeGenresDocument, options);
+        }
 export type AnimeGenresQueryHookResult = ReturnType<typeof useAnimeGenresQuery>;
 export type AnimeGenresLazyQueryHookResult = ReturnType<typeof useAnimeGenresLazyQuery>;
 export type AnimeGenresSuspenseQueryHookResult = ReturnType<typeof useAnimeGenresSuspenseQuery>;
-export type AnimeGenresQueryResult = Apollo.QueryResult<
-  AnimeGenresQuery,
-  AnimeGenresQueryVariables
->;
+export type AnimeGenresQueryResult = Apollo.QueryResult<AnimeGenresQuery, AnimeGenresQueryVariables>;
 export const AnimeGenreDocument = gql`
-  query AnimeGenre($id: ID!) {
-    animeGenre(id: $id) {
-      id
-      title
-      createdAt
-    }
+    query AnimeGenre($id: ID!) {
+  animeGenre(id: $id) {
+    id
+    title
+    createdAt
   }
-`;
+}
+    `;
 
 /**
  * __useAnimeGenreQuery__
@@ -186,31 +169,18 @@ export const AnimeGenreDocument = gql`
  *   },
  * });
  */
-export function useAnimeGenreQuery(
-  baseOptions: Apollo.QueryHookOptions<AnimeGenreQuery, AnimeGenreQueryVariables> &
-    ({ variables: AnimeGenreQueryVariables; skip?: boolean } | { skip: boolean }),
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<AnimeGenreQuery, AnimeGenreQueryVariables>(AnimeGenreDocument, options);
-}
-export function useAnimeGenreLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<AnimeGenreQuery, AnimeGenreQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<AnimeGenreQuery, AnimeGenreQueryVariables>(
-    AnimeGenreDocument,
-    options,
-  );
-}
-export function useAnimeGenreSuspenseQuery(
-  baseOptions?: Apollo.SuspenseQueryHookOptions<AnimeGenreQuery, AnimeGenreQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<AnimeGenreQuery, AnimeGenreQueryVariables>(
-    AnimeGenreDocument,
-    options,
-  );
-}
+export function useAnimeGenreQuery(baseOptions: Apollo.QueryHookOptions<AnimeGenreQuery, AnimeGenreQueryVariables> & ({ variables: AnimeGenreQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AnimeGenreQuery, AnimeGenreQueryVariables>(AnimeGenreDocument, options);
+      }
+export function useAnimeGenreLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AnimeGenreQuery, AnimeGenreQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AnimeGenreQuery, AnimeGenreQueryVariables>(AnimeGenreDocument, options);
+        }
+export function useAnimeGenreSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<AnimeGenreQuery, AnimeGenreQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AnimeGenreQuery, AnimeGenreQueryVariables>(AnimeGenreDocument, options);
+        }
 export type AnimeGenreQueryHookResult = ReturnType<typeof useAnimeGenreQuery>;
 export type AnimeGenreLazyQueryHookResult = ReturnType<typeof useAnimeGenreLazyQuery>;
 export type AnimeGenreSuspenseQueryHookResult = ReturnType<typeof useAnimeGenreSuspenseQuery>;
