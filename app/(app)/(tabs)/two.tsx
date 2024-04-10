@@ -37,7 +37,7 @@ export default function TabTwoScreen(): React.ReactNode {
         uri: image.uri,
       });
 
-      fetch(`http://192.168.12.96:3000/api/file/upload`, {
+      fetch(`https://full-backend-six.vercel.app/api/file/upload`, {
         method: 'POST',
         body: data,
       })
