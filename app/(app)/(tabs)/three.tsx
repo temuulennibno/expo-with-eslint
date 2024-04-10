@@ -23,7 +23,7 @@ export default function TabTwoScreen(): React.ReactNode {
   };
 
   useEffect(() => {
-    if (gotFirstData) {
+    if (!gotFirstData) {
       getData();
       setGotFirstData(true);
     }

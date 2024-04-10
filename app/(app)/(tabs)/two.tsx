@@ -31,7 +31,7 @@ export default function TabTwoScreen(): React.ReactNode {
     if (image) {
       const data = new FormData();
       // @ts-ignore
-      data.append('image', {
+      data.append('file', {
         name: 'image',
         type: image.type,
         uri: image.uri,
